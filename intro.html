@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Halo, Aku Momo</title>
+
+<style>
+
+body{
+margin:0;
+background:#fff7fb;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+width:80%;
+max-width:700px;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+text-align:center;
+}
+
+h1{
+color:#ff6fa8;
+}
+
+#typing{
+
+font-size:20px;
+
+line-height:1.8;
+
+min-height:260px;
+
+margin-top:20px;
+
+}
+
+button{
+
+display:none;
+
+margin-top:25px;
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff6fa8;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🐻 Momo</h1>
+
+<p id="typing"></p>
+
+<button id="nextBtn"
+onclick="location.href='form.html'">
+
+Aku Mengerti 🤍
+
+</button>
+
+</div>
+
+<script>
+
+const messages=[
+
+"Halo.",
+
+"Senang akhirnya kita bertemu.",
+
+"Aku adalah penjaga taman kecil ini.",
+
+"Aku tidak pandai menulis surat.",
+
+"Tapi...",
+
+"Aku cukup pandai menjaganya. 🤍"
+
+];
+
+let line=0;
+
+let char=0;
+
+function type(){
+
+if(line<messages.length){
+
+if(char<messages[line].length){
+
+document.getElementById("typing").innerHTML+=messages[line].charAt(char);
+
+char++;
+
+setTimeout(type,45);
+
+}
+
+else{
+
+document.getElementById("typing").innerHTML+="<br><br>";
+
+line++;
+
+char=0;
+
+setTimeout(type,900);
+
+}
+
+}
+
+else{
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+}
+
+}
+
+type();
+
+</script>
+
+</body>
+
+</html>
