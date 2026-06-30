@@ -124,6 +124,7 @@ Lanjut 🤍
 
 let step=1;
 let nama="";
+let judul="";
 
 function nextStep(){
 
@@ -157,6 +158,14 @@ Senang berkenalan denganmu, ${nama}. 🤍
 
 <br><br>
 
+Terima kasih sudah mempercayaiku.
+
+<br><br>
+
+Aku akan menjadi penjaga suratmu sampai hari ulang tahun Naurah tiba.
+
+<br><br>
+
 Sekarang...
 
 <br><br>
@@ -170,6 +179,23 @@ input.placeholder="Judul surat";
 
 step=2;
 
+}
+if(step==2){
+
+judul=input.value;
+
+if(judul.trim()==""){
+
+message.innerHTML=`
+🤍
+
+Aku belum bisa menyimpan surat tanpa judul.
+
+Boleh beri judul dulu supaya nanti Naurah tahu surat ini tentang apa? ✨
+`;
+
+input.focus();
+return;
 }
 
 }
