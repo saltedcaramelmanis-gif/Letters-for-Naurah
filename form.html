@@ -123,6 +123,7 @@ Lanjut 🤍
 <script>
 
 let step=1;
+let nama="";
 
 function nextStep(){
 
@@ -131,10 +132,11 @@ const message=document.getElementById("message");
 const input=document.getElementById("inputBox");
 
 if(step==1){
+nama=input.value;
 
 message.innerHTML=`
 
-Senang berkenalan denganmu. 🤍
+Senang berkenalan denganmu, ${nama}. 🤍
 
 <br><br>
 
