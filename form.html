@@ -133,9 +133,26 @@ const input=document.getElementById("inputBox");
 
 if(step==1){
 nama=input.value;
+if(nama.trim()==""){
 
 message.innerHTML=`
+🐻
 
+Maaf ya...
+
+Aku belum bisa menerima surat ini.
+
+Boleh tulis nama panggilanmu?
+
+Aku ingin memastikan nanti Naurah tahu surat ini berasal dari siapa. 🤍
+`;
+
+input.focus();
+return;
+
+}
+
+message.innerHTML = `
 Senang berkenalan denganmu, ${nama}. 🤍
 
 <br><br>
@@ -145,7 +162,6 @@ Sekarang...
 <br><br>
 
 Boleh aku tahu judul suratmu?
-
 `;
 
 input.value="";
