@@ -102,19 +102,61 @@ Boleh aku mengenalmu dulu?
 
 </p>
 
+<div id="formArea">
+
 <input
+id="inputBox"
 type="text"
 placeholder="Nama panggilanmu">
 
 <br>
 
-<button>
+<button
+onclick="nextStep()">
 
 Lanjut 🤍
 
 </button>
 
 </div>
+
+<script>
+
+let step=1;
+
+function nextStep(){
+
+const message=document.getElementById("message");
+
+const input=document.getElementById("inputBox");
+
+if(step==1){
+
+message.innerHTML=`
+
+Senang berkenalan denganmu. 🤍
+
+<br><br>
+
+Sekarang...
+
+<br><br>
+
+Boleh aku tahu judul suratmu?
+
+`;
+
+input.value="";
+
+input.placeholder="Judul surat";
+
+step=2;
+
+}
+
+}
+
+</script>
 
 </body>
 
