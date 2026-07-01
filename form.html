@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,54 +9,154 @@
 
 <style>
 
-body{
+*{
 margin:0;
-background:#fff7fb;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#FFF8FC;
+
 font-family:Arial,sans-serif;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-height:100vh;
+
+min-height:100vh;
+
+padding:24px;
+
 }
 
 .card{
+
+width:100%;
+max-width:760px;
+
 background:white;
-width:80%;
-max-width:700px;
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+padding:45px;
+
+border-radius:28px;
+
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+
 text-align:center;
+
 }
 
 h1{
-color:#ff6fa8;
+
+font-size:38px;
+
+color:#FF78AF;
+
+margin-bottom:25px;
+
 }
 
 #message{
+
 font-size:20px;
-line-height:1.8;
-margin-bottom:25px;
-min-height:170px;
+
+line-height:1.9;
+
+color:#555;
+
+min-height:240px;
+
+margin-bottom:30px;
+
 }
 
-input{
-width:90%;
-padding:15px;
-border-radius:15px;
+input,textarea{
+
+width:100%;
+
+padding:16px;
+
+font-size:17px;
+
 border:1px solid #ddd;
-font-size:16px;
+
+border-radius:18px;
+
+outline:none;
+
+margin-top:10px;
+
+font-family:inherit;
+
+}
+
+textarea{
+
+resize:none;
+
+height:180px;
+
+display:none;
+
+}
+
+input:focus,
+textarea:focus{
+
+border-color:#FF78AF;
+
+}
+
+#photoArea{
+
+display:none;
+
+margin-top:20px;
+
+}
+
+#preview{
+
+display:none;
+
+max-width:220px;
+
+margin-top:20px;
+
+border-radius:18px;
+
 }
 
 button{
-margin-top:25px;
-padding:15px 35px;
+
+margin-top:30px;
+
+padding:16px 42px;
+
 border:none;
-border-radius:30px;
-background:#ff6fa8;
+
+border-radius:999px;
+
+background:#FF78AF;
+
 color:white;
+
 font-size:18px;
+
 cursor:pointer;
+
+transition:.25s;
+
+}
+
+button:hover{
+
+transform:scale(1.03);
+
 }
 
 </style>
@@ -91,12 +192,33 @@ id="inputBox"
 type="text"
 placeholder="Nama panggilanmu">
 
-<br>
+<textarea
+id="textBox"
+placeholder="Isi suratmu..."></textarea>
 
-<button onclick="nextStep()">
+<div id="photoArea">
+
+<p style="margin-bottom:15px;color:#666;">
+
+Kalau ingin, kamu boleh menitipkan satu foto juga. 🤍
+
+</p>
+
+<input
+type="file"
+id="photoInput"
+accept="image/*">
+
+<img id="preview">
+
+</div>
+
+<button
+id="nextButton">
+
 Lanjut 🤍
-</button>
 
+</button>
 </div>
 
 <script>
@@ -104,36 +226,58 @@ Lanjut 🤍
 let step = 1;
 
 let nama = "";
-
 let judul = "";
+let isiSurat = "";
+let foto = null;
 
-let isi = "";
+const message = document.getElementById("message");
+const input = document.getElementById("inputBox");
+const textBox = document.getElementById("textBox");
+const photoArea = document.getElementById("photoArea");
+const photoInput = document.getElementById("photoInput");
+const preview = document.getElementById("preview");
+const nextButton = document.getElementById("nextButton");
+
+photoInput.addEventListener("change", function(){
+
+    if(this.files.length>0){
+
+        foto = this.files[0];
+
+        preview.src = URL.createObjectURL(foto);
+
+        preview.style.display = "block";
+
+    }
+
+});
+
+nextButton.addEventListener("click", nextStep);
 
 function nextStep(){
 
-const message=document.getElementById("message");
-
-const input=document.getElementById("inputBox");
-
-
+// ======================
 // STEP 1
+// ======================
 
 if(step===1){
 
-nama=input.value.trim();
+nama = input.value.trim();
 
 if(nama===""){
 
 message.innerHTML=`
+
 🐻
 
 Maaf ya...
 
 Aku belum bisa menerima surat ini.
 
-Boleh tulis nama panggilanmu?
+<br><br>
 
-Aku ingin memastikan nanti Naurah tahu surat ini berasal dari siapa. 🤍
+Boleh tulis nama panggilanmu dulu?
+
 `;
 
 input.focus();
@@ -144,15 +288,15 @@ return;
 
 message.innerHTML=`
 
-Senang berkenalan denganmu, ${nama}. 🤍
+Senang berkenalan denganmu,
+
+<br><br>
+
+<b>${nama}</b> 🤍
 
 <br><br>
 
 Terima kasih sudah mempercayaiku.
-
-<br><br>
-
-Aku akan menjadi penjaga suratmu sampai hari ulang tahun Naurah tiba.
 
 <br><br>
 
@@ -174,8 +318,9 @@ return;
 
 }
 
-
+// ======================
 // STEP 2
+// ======================
 
 if(step===2){
 
@@ -191,7 +336,7 @@ Aku belum bisa menyimpan surat tanpa judul.
 
 <br><br>
 
-Boleh beri judul dulu supaya nanti Naurah tahu surat ini tentang apa?
+Boleh beri judul dulu ya.
 
 `;
 
@@ -203,7 +348,7 @@ return;
 
 message.innerHTML=`
 
-Judul suratmu:
+Judul suratmu
 
 <br><br>
 
@@ -211,17 +356,23 @@ Judul suratmu:
 
 <br><br>
 
+Indah sekali.
+
+<br><br>
+
 Sekarang...
 
 <br><br>
 
-Silakan tuliskan isi suratmu.
+Tuliskan isi suratmu.
 
 `;
 
-input.value="";
+input.style.display="none";
 
-input.placeholder="Isi surat...";
+textBox.style.display="block";
+
+textBox.value="";
 
 step=3;
 
@@ -229,14 +380,15 @@ return;
 
 }
 
-
+// ======================
 // STEP 3
+// ======================
 
 if(step===3){
 
-isi=input.value.trim();
+isiSurat=textBox.value.trim();
 
-if(isi===""){
+if(isiSurat===""){
 
 message.innerHTML=`
 
@@ -246,15 +398,11 @@ Suratmu masih kosong.
 
 <br><br>
 
-Aku ingin menyimpannya dengan baik.
-
-<br><br>
-
-Boleh tulis isi suratnya dulu?
+Aku ingin menjaganya dengan baik.
 
 `;
 
-input.focus();
+textBox.focus();
 
 return;
 
@@ -262,23 +410,21 @@ return;
 
 message.innerHTML=`
 
+Aku sudah menerima isi suratmu.
+
 🤍
 
-Terima kasih, ${nama}.
+Kalau kamu mau...
 
-<br><br>
+Kamu juga boleh menitipkan satu foto.
 
-Suratmu sudah kuterima.
-
-<br><br>
-
-Aku akan menjaganya sampai hari ulang tahun Naurah tiba. 🌸
+Ini opsional kok.
 
 `;
 
-input.style.display="none";
+textBox.style.display="none";
 
-document.querySelector("button").style.display="none";
+photoArea.style.display="block";
 
 step=4;
 
@@ -286,9 +432,122 @@ return;
 
 }
 
+// ======================
+// STEP 4
+// ======================
+
+if(step===4){
+
+message.innerHTML=`
+
+🤍
+
+Sebelum aku menyimpannya...
+
+Aku ingin memastikan semuanya sudah benar.
+
+`;
+
+photoArea.style.display="none";
+
+message.innerHTML=`
+
+<h3>Review Suratmu 🤍</h3>
+
+<p><b>Nama</b></p>
+
+<p>${nama}</p>
+
+<br>
+
+<p><b>Judul</b></p>
+
+<p>${judul}</p>
+
+<br>
+
+<p><b>Isi Surat</b></p>
+
+<p>${isiSurat.replace(/\n/g,"<br>")}</p>
+
+${foto ? "<br><p>📷 Foto berhasil ditambahkan.</p>" : "<br><p>Tidak ada foto yang ditambahkan.</p>"}
+
+<br><br>
+
+Kalau semuanya sudah benar...
+
+Tekan sekali lagi tombol <b>Lanjut 🤍</b>.
+
+`;
+
+step=5;
+
+return;
+
+}
+
+// ======================
+// STEP 5
+// ======================
+
+if(step===5){
+
+message.innerHTML=`
+
+🐻
+
+Terima kasih ya, ${nama}. 🤍
+
+<br><br>
+
+Aku berjanji akan menjaga surat ini sebaik mungkin.
+
+<br><br>
+
+Semoga saat Naurah membacanya nanti...
+
+Surat ini masih membawa perasaan hangat yang sama seperti hari ketika kamu menulisnya.
+
+<br><br>
+
+Sampai hari itu tiba...
+
+Biarkan aku menjadi penjaganya. 🌸
+
+`;
+
+input.style.display="none";
+
+textBox.style.display="none";
+
+photoArea.style.display="none";
+
+nextButton.innerHTML="Titipkan Surat 🤍";
+
+step=6;
+
+return;
+
+}
+
+// ======================
+// STEP 6
+// ======================
+
+if(step===6){
+
+window.location.href="waiting.html";
+
+return;
+
+}
 }
 
 </script>
 
 </body>
+
 </html>
+
+
+
