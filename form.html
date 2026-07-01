@@ -198,6 +198,61 @@ input.focus();
 return;
 }
 
+message.innerHTML=`
+Judul suratmu:
+
+<b>${judul}</b>
+
+🤍
+
+Sekarang tuliskan isi suratmu.
+
+Aku akan menjaganya sampai hari ulang tahun Naurah.
+`;
+
+input.value="";
+input.placeholder="Isi surat...";
+step=3;
+
+if(step==3){
+
+const isi = input.value;
+
+if(isi.trim()==""){
+
+message.innerHTML=`
+🤍
+
+Suratmu masih kosong.
+
+Aku ingin menyimpannya dengan baik, jadi boleh tulis isi suratnya dulu? ✨
+`;
+
+input.focus();
+return;
+}
+
+message.innerHTML=`
+🤍
+
+Suratmu berhasil kusimpan.
+
+Judul:
+<b>${judul}</b>
+
+Isi surat:
+${isi}
+
+Aku akan menjaganya sampai hari ulang tahunmu. ✨
+`;
+
+input.value="";
+input.disabled=true;
+step=4;
+}
+}
+}
+
 }
 
 </script>
