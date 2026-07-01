@@ -1,57 +1,91 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Selamat Datang</title>
+<title>Momo's Garden</title>
 
 <style>
 
-body{
+*{
 margin:0;
-background:#fff7fb;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#FFF8FC;
+
 font-family:Arial,sans-serif;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 height:100vh;
+
+padding:20px;
+
 }
 
 .card{
+
 background:white;
-padding:40px;
-width:80%;
-max-width:650px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+width:100%;
+
+max-width:700px;
+
+padding:45px;
+
+border-radius:28px;
+
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+
 text-align:center;
+
 }
 
 h1{
-color:#ff6fa8;
+
+color:#FF77AE;
+
+margin-bottom:25px;
+
+font-size:38px;
+
 }
 
 #typing{
-margin-top:25px;
-font-size:20px;
-line-height:1.8;
-min-height:150px;
+
+font-size:21px;
+
+line-height:1.9;
+
+min-height:250px;
+
+color:#555;
+
 }
 
 button{
 
 display:none;
 
-margin-top:30px;
+margin-top:35px;
 
-padding:15px 35px;
+padding:16px 38px;
 
 border:none;
 
-border-radius:30px;
+border-radius:999px;
 
-background:#ff6fa8;
+background:#FF77AE;
 
 color:white;
 
@@ -59,11 +93,15 @@ font-size:18px;
 
 cursor:pointer;
 
+transition:.25s;
+
 }
 
 button:hover{
 
-background:#ff4f93;
+background:#ff5f9d;
+
+transform:scale(1.03);
 
 }
 
@@ -79,68 +117,85 @@ background:#ff4f93;
 
 <p id="typing"></p>
 
-<button id="startBtn" onclick="location.href='intro.html'">
+<button id="startBtn">
+
 Titipkan Suratmu 🌸
+
 </button>
 
 </div>
 
 <script>
 
-const messages=[
+const texts=[
+
 "Halo...",
+
 "Namaku Momo.",
-"Aku penjaga surat.",
+
+"Aku adalah penjaga surat.",
+
 "Hari ini seseorang memintaku menjaga sesuatu yang sangat berharga.",
+
 "Sebuah surat.",
+
 "Mungkin...",
-"Surat itu berasal darimu."
+
+"Surat itu berasal darimu. 🤍"
+
 ];
+
+const typing=document.getElementById("typing");
+
+const button=document.getElementById("startBtn");
 
 let line=0;
 
 let char=0;
 
-function type(){
+function typeText(){
 
-if(line<messages.length){
+if(line>=texts.length){
 
-if(char<messages[line].length){
+button.style.display="inline-block";
 
-document.getElementById("typing").innerHTML+=messages[line].charAt(char);
+return;
+
+}
+
+if(char<texts[line].length){
+
+typing.innerHTML+=texts[line].charAt(char);
 
 char++;
 
-setTimeout(type,45);
+setTimeout(typeText,45);
 
 }
 
 else{
 
-document.getElementById("typing").innerHTML+="<br><br>";
+typing.innerHTML+="<br><br>";
 
 line++;
 
 char=0;
 
-setTimeout(type,900);
+setTimeout(typeText,850);
 
 }
 
 }
 
-else{
+typeText();
 
-document.getElementById("startBtn").style.display="inline-block";
+button.onclick=function(){
+
+window.location.href="intro.html";
 
 }
-
-}
-
-type();
 
 </script>
 
 </body>
-
 </html>
