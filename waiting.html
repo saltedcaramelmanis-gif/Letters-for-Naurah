@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Momo Menjaga Suratmu</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#FFF8FC;
+
+font-family:Arial,sans-serif;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+min-height:100vh;
+
+padding:20px;
+
+}
+
+.card{
+
+background:white;
+
+max-width:750px;
+
+width:100%;
+
+padding:45px;
+
+border-radius:28px;
+
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+h1{
+
+color:#FF78AF;
+
+margin-bottom:25px;
+
+font-size:38px;
+
+}
+
+#typing{
+
+font-size:21px;
+
+line-height:1.9;
+
+min-height:320px;
+
+color:#555;
+
+}
+
+.flower{
+
+font-size:42px;
+
+margin-top:30px;
+
+animation:float 2.5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🐻 Momo</h1>
+
+<p id="typing"></p>
+
+<div class="flower">
+
+🌸
+
+</div>
+
+</div>
+
+<script>
+
+const texts=[
+
+"Suratmu sudah kuterima. 🤍",
+
+"Aku akan menyimpannya di taman kecil ini.",
+
+"Tak akan kubiarkan siapa pun membacanya.",
+
+"Termasuk Naurah.",
+
+"Aku akan menjaganya setiap hari...",
+
+"Sampai hari ulang tahunnya tiba.",
+
+"Terima kasih sudah mempercayaiku. 🌸"
+
+];
+
+const typing=document.getElementById("typing");
+
+let line=0;
+
+let char=0;
+
+function typeText(){
+
+if(line>=texts.length){
+
+return;
+
+}
+
+if(char<texts[line].length){
+
+typing.innerHTML+=texts[line].charAt(char);
+
+char++;
+
+setTimeout(typeText,40);
+
+}
+
+else{
+
+typing.innerHTML+="<br><br>";
+
+line++;
+
+char=0;
+
+setTimeout(typeText,900);
+
+}
+
+}
+
+typeText();
+
+</script>
+
+</body>
+
+</html>
