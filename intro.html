@@ -3,46 +3,73 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Halo, Aku Momo</title>
 
 <style>
 
-body{
+*{
 margin:0;
-background:#fff7fb;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#FFF8FC;
+
 font-family:Arial,sans-serif;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 height:100vh;
+
+padding:20px;
+
 }
 
 .card{
+
 background:white;
-width:80%;
-max-width:700px;
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+width:100%;
+
+max-width:720px;
+
+padding:45px;
+
+border-radius:28px;
+
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+
 text-align:center;
+
 }
 
 h1{
-color:#ff6fa8;
+
+color:#FF77AE;
+
+margin-bottom:25px;
+
+font-size:38px;
+
 }
 
 #typing{
 
-font-size:20px;
+font-size:21px;
 
-line-height:1.8;
+line-height:1.9;
 
-min-height:260px;
+min-height:340px;
 
-margin-top:20px;
+color:#555;
 
 }
 
@@ -50,21 +77,31 @@ button{
 
 display:none;
 
-margin-top:25px;
+margin-top:30px;
 
-padding:15px 35px;
+padding:16px 38px;
 
 border:none;
 
-border-radius:30px;
+border-radius:999px;
 
-background:#ff6fa8;
+background:#FF77AE;
 
 color:white;
 
 font-size:18px;
 
 cursor:pointer;
+
+transition:.25s;
+
+}
+
+button:hover{
+
+background:#ff5f9d;
+
+transform:scale(1.03);
 
 }
 
@@ -80,8 +117,7 @@ cursor:pointer;
 
 <p id="typing"></p>
 
-<button id="nextBtn"
-onclick="location.href='form.html'">
+<button id="nextBtn">
 
 Aku Mengerti 🤍
 
@@ -91,66 +127,79 @@ Aku Mengerti 🤍
 
 <script>
 
-const messages=[
+const texts=[
 
 "Halo.",
 
-"Senang akhirnya kita bertemu.",
+"Senang akhirnya kita bertemu. 🤍",
 
 "Aku adalah penjaga taman kecil ini.",
+
+"Tempat di mana surat-surat akan beristirahat dengan tenang.",
 
 "Aku tidak pandai menulis surat.",
 
 "Tapi...",
 
-"Aku cukup pandai menjaganya. 🤍"
+"Aku akan menjaga setiap surat yang dititipkan kepadaku.",
+
+"Dan aku berjanji...",
+
+"Aku tidak akan membiarkan Naurah membacanya sebelum hari ulang tahunnya tiba. 🌸"
 
 ];
+
+const typing=document.getElementById("typing");
+
+const button=document.getElementById("nextBtn");
 
 let line=0;
 
 let char=0;
 
-function type(){
+function typeText(){
 
-if(line<messages.length){
+if(line>=texts.length){
 
-if(char<messages[line].length){
+button.style.display="inline-block";
 
-document.getElementById("typing").innerHTML+=messages[line].charAt(char);
+return;
+
+}
+
+if(char<texts[line].length){
+
+typing.innerHTML+=texts[line].charAt(char);
 
 char++;
 
-setTimeout(type,45);
+setTimeout(typeText,45);
 
 }
 
 else{
 
-document.getElementById("typing").innerHTML+="<br><br>";
+typing.innerHTML+="<br><br>";
 
 line++;
 
 char=0;
 
-setTimeout(type,900);
+setTimeout(typeText,850);
 
 }
 
 }
 
-else{
+typeText();
 
-document.getElementById("nextBtn").style.display="inline-block";
+button.onclick=function(){
+
+window.location.href="form.html";
 
 }
-
-}
-
-type();
 
 </script>
 
 </body>
-
 </html>
