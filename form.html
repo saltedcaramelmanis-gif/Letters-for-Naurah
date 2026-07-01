@@ -122,21 +122,22 @@ Lanjut 🤍
 
 <script>
 
-let step=1;
-let nama="";
-let judul="";
+let step = 1;
+let nama = "";
+let judul = "";
 
-function nextStep(){
+function nextStep() {
 
-const message=document.getElementById("message");
+const message = document.getElementById("message");
+const input = document.getElementById("inputBox");
 
-const input=document.getElementById("inputBox");
+if (step == 1) {
 
-if(step==1){
-nama=input.value;
-if(nama.trim()==""){
+nama = input.value;
 
-message.innerHTML=`
+if (nama.trim() == "") {
+
+message.innerHTML = `
 🐻
 
 Maaf ya...
@@ -150,7 +151,6 @@ Aku ingin memastikan nanti Naurah tahu surat ini berasal dari siapa. 🤍
 
 input.focus();
 return;
-
 }
 
 message.innerHTML = `
@@ -173,20 +173,19 @@ Sekarang...
 Boleh aku tahu judul suratmu?
 `;
 
-input.value="";
-
-input.placeholder="Judul surat";
-
-step=2;
-
+input.value = "";
+input.placeholder = "Judul surat";
+step = 2;
+return;
 }
-if(step==2){
 
-judul=input.value;
+if (step == 2) {
 
-if(judul.trim()==""){
+judul = input.value;
 
-message.innerHTML=`
+if (judul.trim() == "") {
+
+message.innerHTML = `
 🤍
 
 Aku belum bisa menyimpan surat tanpa judul.
@@ -198,7 +197,7 @@ input.focus();
 return;
 }
 
-message.innerHTML=`
+message.innerHTML = `
 Judul suratmu:
 
 <b>${judul}</b>
@@ -210,19 +209,19 @@ Sekarang tuliskan isi suratmu.
 Aku akan menjaganya sampai hari ulang tahun Naurah.
 `;
 
-input.value="";
-input.placeholder="Isi surat...";
-step=3;
-
+input.value = "";
+input.placeholder = "Isi surat...";
+step = 3;
+return;
 }
 
-if(step==3){
+if (step == 3) {
 
 const isi = input.value;
 
-if(isi.trim()==""){
+if (isi.trim() == "") {
 
-message.innerHTML=`
+message.innerHTML = `
 🤍
 
 Suratmu masih kosong.
@@ -234,7 +233,7 @@ input.focus();
 return;
 }
 
-message.innerHTML=`
+message.innerHTML = `
 🤍
 
 Suratmu berhasil kusimpan.
@@ -248,12 +247,9 @@ ${isi}
 Aku akan menjaganya sampai hari ulang tahunmu. ✨
 `;
 
-input.value="";
-input.disabled=true;
-step=4;
-
-}
-}
+input.value = "";
+input.disabled = true;
+step = 4;
 }
 
 }
