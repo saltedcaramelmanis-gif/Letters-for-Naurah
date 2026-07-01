@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -37,41 +36,26 @@ color:#ff6fa8;
 font-size:20px;
 line-height:1.8;
 margin-bottom:25px;
-min-height:120px;
+min-height:170px;
 }
 
 input{
-
 width:90%;
-
 padding:15px;
-
 border-radius:15px;
-
 border:1px solid #ddd;
-
 font-size:16px;
-
 }
 
 button{
-
 margin-top:25px;
-
 padding:15px 35px;
-
 border:none;
-
 border-radius:30px;
-
 background:#ff6fa8;
-
 color:white;
-
 font-size:18px;
-
 cursor:pointer;
-
 }
 
 </style>
@@ -102,8 +86,6 @@ Boleh aku mengenalmu dulu?
 
 </p>
 
-<div id="formArea">
-
 <input
 id="inputBox"
 type="text"
@@ -111,11 +93,8 @@ placeholder="Nama panggilanmu">
 
 <br>
 
-<button
-onclick="nextStep()">
-
+<button onclick="nextStep()">
 Lanjut 🤍
-
 </button>
 
 </div>
@@ -123,21 +102,29 @@ Lanjut 🤍
 <script>
 
 let step = 1;
+
 let nama = "";
+
 let judul = "";
 
-function nextStep() {
+let isi = "";
 
-const message = document.getElementById("message");
-const input = document.getElementById("inputBox");
+function nextStep(){
 
-if (step == 1) {
+const message=document.getElementById("message");
 
-nama = input.value;
+const input=document.getElementById("inputBox");
 
-if (nama.trim() == "") {
 
-message.innerHTML = `
+// STEP 1
+
+if(step===1){
+
+nama=input.value.trim();
+
+if(nama===""){
+
+message.innerHTML=`
 🐻
 
 Maaf ya...
@@ -150,10 +137,13 @@ Aku ingin memastikan nanti Naurah tahu surat ini berasal dari siapa. 🤍
 `;
 
 input.focus();
+
 return;
+
 }
 
-message.innerHTML = `
+message.innerHTML=`
+
 Senang berkenalan denganmu, ${nama}. 🤍
 
 <br><br>
@@ -171,85 +161,129 @@ Sekarang...
 <br><br>
 
 Boleh aku tahu judul suratmu?
+
 `;
 
-input.value = "";
-input.placeholder = "Judul surat";
-step = 2;
+input.value="";
+
+input.placeholder="Judul surat";
+
+step=2;
+
 return;
+
 }
 
-if (step == 2) {
 
-judul = input.value;
+// STEP 2
 
-if (judul.trim() == "") {
+if(step===2){
 
-message.innerHTML = `
+judul=input.value.trim();
+
+if(judul===""){
+
+message.innerHTML=`
+
 🤍
 
 Aku belum bisa menyimpan surat tanpa judul.
 
-Boleh beri judul dulu supaya nanti Naurah tahu surat ini tentang apa? ✨
+<br><br>
+
+Boleh beri judul dulu supaya nanti Naurah tahu surat ini tentang apa?
+
 `;
 
 input.focus();
+
 return;
+
 }
 
-message.innerHTML = `
+message.innerHTML=`
+
 Judul suratmu:
+
+<br><br>
 
 <b>${judul}</b>
 
-🤍
+<br><br>
 
-Sekarang tuliskan isi suratmu.
+Sekarang...
 
-Aku akan menjaganya sampai hari ulang tahun Naurah.
+<br><br>
+
+Silakan tuliskan isi suratmu.
+
 `;
 
-input.value = "";
-input.placeholder = "Isi surat...";
-step = 3;
+input.value="";
+
+input.placeholder="Isi surat...";
+
+step=3;
+
 return;
+
 }
 
-if (step == 3) {
 
-const isi = input.value;
+// STEP 3
 
-if (isi.trim() == "") {
+if(step===3){
 
-message.innerHTML = `
+isi=input.value.trim();
+
+if(isi===""){
+
+message.innerHTML=`
+
 🤍
 
 Suratmu masih kosong.
 
-Aku ingin menyimpannya dengan baik, jadi boleh tulis isi suratnya dulu? ✨
+<br><br>
+
+Aku ingin menyimpannya dengan baik.
+
+<br><br>
+
+Boleh tulis isi suratnya dulu?
+
 `;
 
 input.focus();
+
 return;
+
 }
 
-message.innerHTML = `
+message.innerHTML=`
+
 🤍
 
-Suratmu berhasil kusimpan.
+Terima kasih, ${nama}.
 
-Judul:
-<b>${judul}</b>
+<br><br>
 
-Isi surat:
-${isi}
+Suratmu sudah kuterima.
 
-Aku akan menjaganya sampai hari ulang tahunmu. ✨
+<br><br>
+
+Aku akan menjaganya sampai hari ulang tahun Naurah tiba. 🌸
+
 `;
 
-input.value = "";
-input.disabled = true;
-step = 4;
+input.style.display="none";
+
+document.querySelector("button").style.display="none";
+
+step=4;
+
+return;
+
 }
 
 }
@@ -257,5 +291,4 @@ step = 4;
 </script>
 
 </body>
-
 </html>
